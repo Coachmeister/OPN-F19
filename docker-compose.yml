@@ -2,32 +2,40 @@ version: '3.1'
 services:
     nginx:
         build:
-            context: ./Proxy
-            dockerfile: ./Dockerfile
-        container_name: nginx4
+            context: ./Proxy/
+            dockerfile: Dockerfile
+        container_name: nginx
         depends_on:
             - flask
         volumes:
-            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+            - ./Proxy/nginx.conf:/etc/nginx/conf.d/default.conf
         networks:
             - my-network
         ports:
-            - 90:80
+            - "80:80"
     flask:
         build:
             context: ./Backend
             dockerfile: Dockerfile
         image: flask:0.0.1
         container_name: flask
+        volumes:
+        - ./:/code/
+        environment:
+                - FLASK_APP=/code/Backend/code/main.py
         command: flask run --host=0.0.0.0
         networks:
-            my-network:
-                aliases:
+             my-network:
+                 aliases:
                     - flask-app
-        ports:
-            - 8080:5000
+          
+   # mysql-development:
+    #    build:
+     #       context: ./Database
+      #      dockerfile: ./Dockerfile
 
 networks:
     my-network:
+            
 
 

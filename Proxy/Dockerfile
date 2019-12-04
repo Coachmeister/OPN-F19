@@ -1,3 +1,4 @@
-FROM python:3
+FROM nginx
 
-RUN pip install flask
+
+
