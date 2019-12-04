@@ -28,17 +28,32 @@ services:
                 - FLASK_APP=/code/Backend/code/main.py
         command: flask run --host=0.0.0.0
         networks:
-             my-network:
-                 aliases:
+            db-network:
+            my-network:
+                aliases:
                     - flask-app
           
-   # mysql-development:
-    #    build:
-     #       context: ./Database
-      #      dockerfile: ./Dockerfile
+        db:
+        image: mysql:5.7
+        restart: 'always'
+        environment:
+            MYSQL_DATABASE: db
+            MYSQL_USER: 'Jonas'
+            MYSQL_PASSWORD: 'password'
+            MYSQL_ROOT_PASSWORD: 'password'
+        ports:
+            - '3306:3306'
+        expose:
+            - '3306'
+        volumes:
+            - 'my-db:/var/lib/mysql'
+        networks:
+            db-network
+
 
 networks:
     my-network:
+    db-network:
             
 
 
