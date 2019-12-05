@@ -3,7 +3,7 @@ services:
     nginx:
         build:
             context: ./Proxy/
-            dockerfile: Dockerfile
+            dockerfile: ./Dockerfile
         container_name: nginx
         depends_on:
             - flask
@@ -18,14 +18,14 @@ services:
             - "443:443"
     flask:
         build:
-            context: ./Backend
-            dockerfile: Dockerfile
+            context: ./Backend/
+            dockerfile: ./Dockerfile
         container_name: flask
         volumes:
         - ./:/code/
         environment:
                 - FLASK_APP=/code/Backend/code/main.py
-        command: flask run --host=0.0.0.0
+        command: flask run --host=0.0.0.0 --debugger
         networks:
             db-network:
             my-network:
@@ -34,7 +34,7 @@ services:
           
     db:
         build:
-            context: ./Database
+            context: ./Database/
             dockerfile: ./Dockerfile 
         networks:
             - db-network
