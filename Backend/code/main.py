@@ -25,8 +25,9 @@ def get():
 	sql = "SELECT * FROM persons"
 	mycursor.execute(sql)
 	cnx.commit()
-	return jsonify(data = mycursor.fetchall())
-	#return Response(jsonify("PersonID", "firstname", "lastname"), 200)
+	#return jsonify(data = mycursor.fetchall())
+	#return Response(jsonify("personID","firstname","lastname"), 200)
+	return jsonify(sql)
 	mycursor.close()
 	cnx.close()
 
