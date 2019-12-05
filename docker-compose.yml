@@ -20,7 +20,6 @@ services:
         build:
             context: ./Backend
             dockerfile: Dockerfile
-        image: flask:0.0.1
         container_name: flask
         volumes:
         - ./:/code/
@@ -33,23 +32,14 @@ services:
                 aliases:
                     - flask-app
           
-        db:
-        image: mysql:5.7
-        restart: 'always'
-        environment:
-            MYSQL_DATABASE: db
-            MYSQL_USER: 'Jonas'
-            MYSQL_PASSWORD: 'password'
-            MYSQL_ROOT_PASSWORD: 'password'
-        ports:
-            - '3306:3306'
-        expose:
-            - '3306'
-        volumes:
-            - 'my-db:/var/lib/mysql'
+    db:
+        build:
+            context: ./Database
+            dockerfile: ./Dockerfile 
         networks:
-            db-network
-
+            - db-network
+volumes:
+    my-db:
 
 networks:
     my-network:
