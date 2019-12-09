@@ -25,7 +25,7 @@ services:
         - ./:/code/
         environment:
                 - FLASK_APP=/code/Backend/code/main.py
-        command: flask run --host=0.0.0.0 --debugger
+        command: flask run --host=0.0.0.0
         networks:
             db-network:
             my-network:
