@@ -28,7 +28,7 @@ def get():
 	#return jsonify(PersonID = 0, Firstname ="fuck", Lastname = "you")
 	cnx = mysql.connector.connect(user='root', password='',host='db',database='db')
 	cursor = cnx.cursor()
-	cursor.execute('SELECT Firstname, lastname, PersonID FROM persons')
+	cursor.execute('SELECT * FROM persons')
 	row_headers=[x[0] for x in cursor.description]
 	rv = cursor.fetchall()
 	json_data=[]
