@@ -22,7 +22,7 @@ def post():
 	mycursor.close()
 	cnx.close()
 
-@app.route('/persons', methods = ['GET'])
+@app.route('/persons/', methods = ['GET'])
 @cross_origin(supports_credentials=True)
 def get():
 	#return jsonify(PersonID = 0, Firstname ="fuck", Lastname = "you")
