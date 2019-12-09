@@ -34,7 +34,7 @@ def get():
 	json_data=[]
 	for result in rv:
 		json_data.append(dict(zip(row_headers,result)))
-	return json.dumps(json_data)
+	return json.dumps(json_data, 200)
 	#return jsonify(("PersonID","Firstname","Lastname"), 200)
 	#return Response(jsonify(results))
 	cursor.close()
