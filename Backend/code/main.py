@@ -25,7 +25,7 @@ def post():
 @app.route('/persons/', methods = ['GET'])
 @cross_origin(supports_credentials=True)
 def get():
-	#return jsonify(PersonID = 0, Firstname ="fuck", Lastname = "you")
+	
 	cnx = mysql.connector.connect(user='root', password='',host='db',database='db')
 	cursor = cnx.cursor()
 	cursor.execute('SELECT * FROM persons')
